@@ -93,3 +93,32 @@ body {
 
 .inicial { animation: fadeIn 1.5s ease-in; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Overlay de transición con rombo alargado */
+#transitionOverlay {
+  position: fixed;
+  inset: 0;
+  display: none; /* se activa por JS */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  pointer-events: none; /* no bloquear interacciones */
+  background: transparent; /* sin fondo para que solo se vea el rombo */
+}
+
+#transitionOverlay .diamond {
+  /* Rombo alargado horizontalmente (eje X) y completamente opaco */
+  width: 6vw;     /* base visible */
+  height: 4vh;    /* rombo alargado */
+  background: var(--dorado); /* UN SOLO COLOR */
+  border: none; /* sin borde para mantener un único color */
+  box-shadow: none; /* sin brillos ni sombras */
+  /* forma de rombo */
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  transform: scale(0);
+  transform-origin: 50% 50%;
+  /* Asegurar que el rombo esté visible */
+  opacity: 1;
+  z-index: 10000;
+  will-change: transform; /* optimiza la animación */
+}
