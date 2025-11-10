@@ -7,7 +7,69 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css?v=2" />
+    <style>
+      .carta {
+        background: #ffffff !important;
+        border: 12px solid #ffffff !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+      }
+      .carta-contenido {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        padding: 0 !important;
+      }
+      .carta-titulo {
+        position: absolute !important;
+        font-size: 16px !important;
+        letter-spacing: 5px !important;
+        color: #4d4d4d !important;
+        font-family: 'Press Start 2P', monospace !important;
+        text-shadow: none !important;
+        font-weight: bold !important;
+        writing-mode: vertical-rl !important;
+        text-orientation: upright !important;
+      }
+      .carta-titulo-izq {
+        left: 20px !important;
+        top: 25% !important;
+        transform: translateY(-50%) !important;
+      }
+      .carta-titulo-der {
+        right: 20px !important;
+        top: 75% !important;
+        transform: translateY(-50%) rotate(180deg) !important;
+      }
+      .carta-joker-imagen {
+        width: 280px !important;
+        height: auto !important;
+        max-height: 300px !important;
+        object-fit: contain !important;
+        filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
+      }
+      .carta-esquina {
+        color: #D4AF37 !important;
+        z-index: 10 !important;
+      }
+      .carta-esquina-top {
+        top: 16px !important;
+        left: 16px !important;
+      }
+      .carta-esquina-bottom {
+        bottom: 16px !important;
+        right: 16px !important;
+      }
+      .carta-palo {
+        display: none !important;
+      }
+    </style>
   </head>
   <body style="background: transparent;">
     <main id="app">
@@ -26,19 +88,25 @@
         <h2 class="subtitulo">SELECCIONE UNA OPCIÓN</h2>
         <div class="cartas">
           <article class="carta" data-target="matrices" role="button" tabindex="0" aria-label="Ir a matrices">
-            <div class="carta-icono">🂡</div>
-            <div class="carta-titulo">MATRICES</div>
-            <div class="carta-desc">Operaciones matriciales</div>
+            <div class="carta-titulo carta-titulo-izq">MATRICES</div>
+            <div class="carta-contenido">
+              <img src="joker.png" alt="Joker" class="carta-joker-imagen">
+            </div>
+            <div class="carta-titulo carta-titulo-der">MATRICES</div>
           </article>
-          <article class="carta" data-target="lineales" role="button" tabindex="0" aria-label="Ir a sistemas lineales">
-            <div class="carta-icono">🂱</div>
-            <div class="carta-titulo">LINEALES</div>
-            <div class="carta-desc">Sistemas de ecuaciones</div>
+          <article class="carta carta-lineales" data-target="lineales" role="button" tabindex="0" aria-label="Ir a sistemas lineales">
+            <div class="carta-titulo carta-titulo-izq">LINEALES</div>
+            <div class="carta-contenido">
+              <img src="joker.png" alt="Joker" class="carta-joker-imagen">
+            </div>
+            <div class="carta-titulo carta-titulo-der">LINEALES</div>
           </article>
-          <article class="carta" data-target="vectores" role="button" tabindex="0" aria-label="Ir a vectores">
-            <div class="carta-icono">🂫</div>
-            <div class="carta-titulo">VECTORES</div>
-            <div class="carta-desc">Operaciones vectoriales</div>
+          <article class="carta carta-vectores" data-target="vectores" role="button" tabindex="0" aria-label="Ir a vectores">
+            <div class="carta-titulo carta-titulo-izq">VECTORES</div>
+            <div class="carta-contenido">
+              <img src="joker.png" alt="Joker" class="carta-joker-imagen">
+            </div>
+            <div class="carta-titulo carta-titulo-der">VECTORES</div>
           </article>
         </div>
       </section>

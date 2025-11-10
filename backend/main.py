@@ -39,9 +39,15 @@ except ImportError:  # fallback para ejecución directa local
     )
 
 
+<<<<<<< HEAD
 # Servimos el frontend como estáticos desde ../frontend (ruta absoluta)
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")
 app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="")
+=======
+# Servimos el frontend como estáticos desde ../frontend
+app = Flask(__name__, static_folder="../frontend", static_url_path="")
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+>>>>>>> jenifel
 
 
 @app.route("/")
