@@ -20,6 +20,7 @@ from operaciones_vectores import (
 
 # Servimos el frontend como estáticos desde ../frontend
 app = Flask(__name__, static_folder="../frontend", static_url_path="")
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
 @app.route("/")
