@@ -1,25 +1,47 @@
 from flask import Flask, request, jsonify, send_from_directory
 import numpy as np
-from operaciones_matrices import (
-    suma as suma_matrices,
-    resta as resta_matrices,
-    multiplicacion as multiplicacion_matrices,
-    determinante as det_matriz,
-    inversa as inv_matriz,
-)
-from operaciones_lineales import resolver_cramer, resolver_inversa
-from operaciones_vectores import (
-    polar_a_rectangular,
-    rectangular_a_polar,
-    suma_vectores,
-    producto_punto,
-    angulo_entre_vectores,
-    producto_cruz,
-)
+import os
+
+# Importaciones compatibles con ejecución como paquete (Vercel) y script local
+try:
+    from .operaciones_matrices import (
+        suma as suma_matrices,
+        resta as resta_matrices,
+        multiplicacion as multiplicacion_matrices,
+        determinante as det_matriz,
+        inversa as inv_matriz,
+    )
+    from .operaciones_lineales import resolver_cramer, resolver_inversa
+    from .operaciones_vectores import (
+        polar_a_rectangular,
+        rectangular_a_polar,
+        suma_vectores,
+        producto_punto,
+        angulo_entre_vectores,
+        producto_cruz,
+    )
+except ImportError:  # fallback para ejecución directa local
+    from operaciones_matrices import (
+        suma as suma_matrices,
+        resta as resta_matrices,
+        multiplicacion as multiplicacion_matrices,
+        determinante as det_matriz,
+        inversa as inv_matriz,
+    )
+    from operaciones_lineales import resolver_cramer, resolver_inversa
+    from operaciones_vectores import (
+        polar_a_rectangular,
+        rectangular_a_polar,
+        suma_vectores,
+        producto_punto,
+        angulo_entre_vectores,
+        producto_cruz,
+    )
 
 
-# Servimos el frontend como estáticos desde ../frontend
-app = Flask(__name__, static_folder="../frontend", static_url_path="")
+# Servimos el frontend como estáticos desde ../frontend (ruta absoluta)
+STATIC_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")
+app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="")
 
 
 @app.route("/")
@@ -233,4 +255,3 @@ def api_vectores_producto_cruz():
 if __name__ == "__main__":
     # Ejecutar en desarrollo
     app.run(host="127.0.0.1", port=5000, debug=True)
-

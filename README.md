@@ -14,10 +14,14 @@ Aplicación web con estética casino/Balatro para operaciones con matrices, sist
 pip install -r backend/requirements.txt
 ```
 
-## Ejecución
+## Ejecución (local)
 
 ```bash
-python backend/main.py
+# Opción recomendada (paquete):
+python -m backend.main
+
+# Alternativa (script):
+# python backend/main.py
 ```
 
 El servidor arranca en `http://127.0.0.1:5000/` y sirve el frontend junto con los endpoints `/api/...`.
