@@ -40,7 +40,9 @@ body {
 
 .subtitulo { text-align: center; color: var(--dorado); margin-top: 0; }
 
-.cartas { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+#menu { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+.cartas { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 32px; }
 .carta { width: 280px; height: 400px; padding: 16px; border-radius: 12px; border: 2px solid var(--dorado);
   background: linear-gradient(180deg, #5D1423 0%, #3A0C18 100%);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
