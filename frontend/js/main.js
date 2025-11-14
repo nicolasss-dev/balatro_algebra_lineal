@@ -1,5 +1,5 @@
 // Navegación entre pantallas y utilidades generales
-const screens = ["inicio", "menu", "matrices", "lineales", "vectores"];
+const screens = ["menu", "matrices", "lineales", "vectores"];
 
 function showScreen(id) {
   screens.forEach(s => {
@@ -22,11 +22,6 @@ function fadeTo(id) {
     showScreen(id);
   }
 }
-
-// Inicio -> Menú
-document.getElementById("btnIniciar").addEventListener("click", () => {
-  fadeTo("menu");
-});
 
 // Cartas del menú
 document.querySelectorAll("#menu .carta").forEach(carta => {
