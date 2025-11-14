@@ -23,16 +23,87 @@ function fadeTo(id) {
   }
 }
 
-// Cartas del menú
-document.querySelectorAll("#menu .carta").forEach(carta => {
-  carta.addEventListener("click", () => fadeTo(carta.dataset.target));
-  carta.addEventListener("keydown", (e) => { if (e.key === "Enter") fadeTo(carta.dataset.target); });
-});
+// Función para inicializar las cartas del menú
+function initMenuCards() {
+  const cartas = document.querySelectorAll("#menu .carta");
+  
+  cartas.forEach(carta => {
+    // Verificar que la carta tenga un target válido
+    if (!carta.dataset.target) {
+      console.warn("Carta sin target:", carta);
+      return;
+    }
+    
+    // Click normal
+    carta.addEventListener("click", () => fadeTo(carta.dataset.target));
+    
+    // Eventos de teclado mejorados
+    carta.addEventListener("keydown", (e) => {
+      // Permitir tanto Enter como Espacio para activar
+      if (e.key === "Enter" || e.key === " " || e.code === "Space") {
+        e.preventDefault(); // Prevenir el scroll con espacio
+        fadeTo(carta.dataset.target);
+      }
+    });
+    // Espacio también activa en keyup para emular comportamiento nativo de botón
+    carta.addEventListener("keyup", (e) => {
+      if (e.key === " " || e.code === "Space") {
+        e.preventDefault();
+        fadeTo(carta.dataset.target);
+      }
+    });
+    
+    // Asegurar que las cartas sean clickeables con el estilo de cursor
+    carta.style.cursor = "pointer";
+    
+    // Agregar efecto hover visual para feedback
+    carta.addEventListener("mouseenter", () => {
+      carta.style.transform = "translateY(-8px)";
+      carta.style.boxShadow = "0 12px 24px rgba(186, 140, 60, 0.5)";
+    });
+    
+    carta.addEventListener("mouseleave", () => {
+      carta.style.transform = "";
+      carta.style.boxShadow = "";
+    });
+  });
+}
 
-// Botones volver
-document.querySelectorAll(".volver").forEach(btn => {
-  btn.addEventListener("click", () => fadeTo(btn.dataset.target));
-});
+// Botones volver: accesibles por tecla Enter/Espacio además de click
+function initVolverButtons() {
+  document.querySelectorAll(".volver").forEach(btn => {
+    const activate = () => {
+      const target = btn?.dataset?.target;
+      if (target) fadeTo(target);
+    };
+
+    btn.addEventListener("click", activate);
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " " || e.code === "Space") {
+        e.preventDefault();
+        activate();
+      }
+    });
+    btn.addEventListener("keyup", (e) => {
+      if (e.key === " " || e.code === "Space") {
+        e.preventDefault();
+        activate();
+      }
+    });
+  });
+}
+
+// Inicializar cuando el DOM esté listo
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    initMenuCards();
+    initVolverButtons();
+  });
+} else {
+  // DOM ya está cargado
+  initMenuCards();
+  initVolverButtons();
+}
 
 // Helpers
 export async function postJSON(url, body) {
