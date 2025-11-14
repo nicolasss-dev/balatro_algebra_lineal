@@ -1,5 +1,5 @@
 // Navegación entre pantallas y utilidades generales
-const screens = ["inicio", "menu", "matrices", "lineales", "vectores"];
+const screens = ["menu", "matrices", "lineales", "vectores"];
 
 function showScreen(id) {
   screens.forEach(s => {
@@ -104,7 +104,6 @@ document.getElementById("btnIniciar").addEventListener("click", () => {
   console.log('Iniciar button clicked');
   diamondTransitionTo("menu");
 });
-
 // Cartas del menú
 document.querySelectorAll("#menu .carta").forEach(carta => {
   console.log('Setting up carta listener for:', carta.dataset.target);
